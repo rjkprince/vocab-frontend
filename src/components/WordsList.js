@@ -41,7 +41,7 @@ export function WordsList({searchVal}) {
     useEffect(() => {
         if (searchVal === "") setWordsList(words)
         else {
-            const filterWords = words.filter(word => word?.name.includes(searchVal))
+            const filterWords = words.filter(word => word?.name.includes(searchVal.toLowerCase()))
             setWordsList(filterWords)
         }
     }, [searchVal])

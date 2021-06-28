@@ -88,13 +88,17 @@ export function HomePage() {
             method: 'post',
             data: createNewWord(input)
         })
-        .then(res => {
+            .then(res => {
+             if (res.data.errors && res.data.errors.length > 0) {
+                let errorMsg = ""
+                res.data.errors.forEach(err => errorMsg += err.message + "\n")
+                alert(errorMsg)
+                return;
+          }
             const copyWords = JSON.parse(JSON.stringify(words))
             copyWords.push(res.data.data.createWord)
-            dispatch({type:"SET_WORDS",payload:copyWords})
-        })
-        .catch(err => {
-            console.log(err.message);
+            dispatch({ type: "SET_WORDS", payload: copyWords })
+            
         })
             .finally(() => {
               handleClose()

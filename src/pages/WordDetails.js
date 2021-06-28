@@ -65,7 +65,6 @@ export function WordDetails() {
         setWord(theWord)
     }, [words])
 
-    console.log(word)
 
     const classes=useStyles()
     return (

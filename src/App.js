@@ -36,12 +36,16 @@ export default function App() {
    method: 'post',
    data: fetchAllWords
   })
-   .then(res => {
-     dispatch({type:"SET_WORDS",payload:res.data.data.words})
+        .then(res => {
+          console.log(res.data)
+           if (res.data.errors && res.data.errors.length > 0) {
+                let errorMsg = ""
+                res.data.errors.forEach(err => errorMsg += err.message + "\n")
+                alert(errorMsg)
+                return;
+          }
+          dispatch({ type: "SET_WORDS", payload: res.data.data.words })
    })
-   .catch(err => {
-    console.log(err.message);
-   });
     }, [])
   return (
      <Router>
