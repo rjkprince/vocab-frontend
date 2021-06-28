@@ -1,1 +1,1 @@
-export const GRAPH_API=process.env.NODE_ENV==="production"?process.env.SERVER_GRAPH_API:"http://localhost:5000"
+export const GRAPH_API=process.env.NODE_ENV==="production"?process.env.REACT_APP_SERVER_GRAPH_API:"http://localhost:5000"
