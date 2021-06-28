@@ -1,15 +1,16 @@
 import { makeStyles, Typography } from '@material-ui/core';
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-
+import { useHistory, useParams } from 'react-router-dom';
+import CancelIcon from '@material-ui/icons/Cancel';
 
 
 const useStyles = makeStyles((theme)=>({
   rootDiv: {
      height: "100vh",
-        padding: 20,
-         overflowY:"scroll",
+     padding: 20,
+    overflowY: "scroll",
+     position:"relative",
       width: "80%",
         margin: "auto",
         boxSizing:"border-box",
@@ -37,8 +38,16 @@ const useStyles = makeStyles((theme)=>({
         borderBottom: "2px solid #ccc",
         marginTop: 15,
         padding: 10,
+    },
+        
+    CancelIcon: {
+        position: "absolute",
+        top: 0,
+        right: 0,
+        fontSize: 50,
+        color: "#640066",
+        cursor:"pointer"
     }
-    
 
 
 }));
@@ -49,6 +58,7 @@ export function WordDetails() {
     const { id } = useParams()
     const [word, setWord] = useState(null)
     const words = useSelector(state => state.words)
+    const history=useHistory()
 
     useEffect(() => {
         const theWord = words?.find(word => word.id === id)
@@ -77,6 +87,8 @@ export function WordDetails() {
                     </div>)
                 })
             }
+
+            <CancelIcon className={classes.CancelIcon} onClick={()=>history.push("/")} />
            
         </div>
     )
